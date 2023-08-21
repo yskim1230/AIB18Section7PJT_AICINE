@@ -10,8 +10,7 @@ if str(ROOT) not in sys.path:
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 from utils import Dataloader
-from models import MF, KNN, RNN
-from models.RNN import RNN
+from models import MF, KNN, SVD, MLP
 import argparse
 
 def parse_args():
@@ -25,8 +24,10 @@ def parse_args():
     parser.add_argument('-k', type=int, default=200)
     parser.add_argument('-e', '--epochs',type=int, default=1)
     parser.add_argument('-b', '--batch_size', type=int, default=512)
-    parser.add_argument('--rnn', action=argparse.BooleanOptionalAction)
-    parser.set_defaults(rnn=True)
+    parser.add_argument('--svd', action=argparse.BooleanOptionalAction)
+    parser.set_defaults(svd=True)
+    parser.add_argument('--mlp', action=argparse.BooleanOptionalAction)
+    parser.set_defaults(mlp=True)
     args = parser.parse_args()
     return args
 
@@ -55,10 +56,10 @@ if args.knn:
               pretrained= args.pretrained
              )
     
-if args.rnn:  # RNN 모델 호출 부분
-    rnn_model = RNN(num_movies=len(movies_df['movieId'].unique()))
+if args.svd:
+    SVD.train(ratings_path='./datasets/ratings.dat'
+             )
 
-
-    rnn_model.train(ratings=ratings_df, 
-                    epochs=args.epochs, 
-                    batch_size=args.batch_size)
+if args.mlp:
+    MLP.train_mlp(ratings_path='./datasets/ratings.dat'
+             )

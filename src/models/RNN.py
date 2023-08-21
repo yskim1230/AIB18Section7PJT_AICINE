@@ -1,4 +1,6 @@
 ## testtest
+## test
+## terst
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -7,6 +9,7 @@ from tensorflow.keras.layers import Input, Embedding, LSTM, Dense, Dropout
 from tensorflow.keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 from utils.Dataloader import load_ratings
+
 
 class RNN:
     """

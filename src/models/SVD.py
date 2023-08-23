@@ -59,7 +59,7 @@ class SVDRecommender():
             raise Exception(f"Model file not found: {model_path}")
         
 
-def train(ratings_path):
+def train(ratings_path, e = [5, 10, 15, 20], lr = [0.001, 0.002, 0.005, 0.01]):
     """
     Train the SVD model and save it to the specified path.
     Args:
@@ -83,7 +83,7 @@ def train(ratings_path):
     
     # Select your best algo with grid search.
     print('Grid Search...')
-    param_grid = {'n_epochs': [5, 10, 15, 20], 'lr_all': [0.001, 0.002, 0.005, 0.01]}
+    param_grid = {'n_epochs': e, 'lr_all': lr}
     grid_search = GridSearchCV(SVD, param_grid, measures=['RMSE'])
     grid_search.fit(train_dataset)  # Convert Trainset back to Dataset before passing
     

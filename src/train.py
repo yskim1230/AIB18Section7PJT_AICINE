@@ -10,7 +10,7 @@ if str(ROOT) not in sys.path:
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 from utils import Dataloader
-from models import MF, KNN, SVD, MLP
+from models import MF, KNN, SVD, MLP, LightFM
 import argparse
 
 def parse_args():
@@ -21,6 +21,8 @@ def parse_args():
     parser.set_defaults(knn=True)
     parser.add_argument('--mf', action=argparse.BooleanOptionalAction)
     parser.set_defaults(mf=True)
+    parser.add_argument('--lightfm', action=argparse.BooleanOptionalAction)
+    parser.set_defaults(lightfm=True)
     parser.add_argument('-k', type=int, default=200)
     parser.add_argument('-e', '--epochs',type=int, default=1)
     parser.add_argument('-b', '--batch_size', type=int, default=512)
@@ -63,3 +65,8 @@ if args.svd:
 if args.mlp:
     MLP.train_mlp(ratings_path='./datasets/ratings.dat'
              )
+
+if args.lightfm:
+    LightFM.train(epochs=args.epochs, 
+                  num_threads=4
+                  )

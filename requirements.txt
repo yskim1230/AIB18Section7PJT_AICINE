@@ -3,3 +3,5 @@ tensorflow==2.13.0
 scikit-learn==1.2.2
 gensim==4.3.1
 spacy==3.5.3
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl#sha256=0964370218b7e1672a30ac50d72cdc6b16f7c867496f1d60925691188f4d2510
+lightfm==1.17

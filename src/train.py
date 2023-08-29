@@ -13,6 +13,14 @@ from utils import Dataloader
 from models import MF, KNN, SVD, MLP, LightFM
 import argparse
 
+def str2list(value):
+    """Convert a string representation of list to a list."""
+    return [float(i) for i in value.strip('[]').split(',')]
+
+def str2list_int(value):
+    """Convert a string representation of list to a list of integers."""
+    return [int(i) for i in value.strip('[]').split(',')]
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument( '--vector_size', type=int, default=100)
@@ -27,6 +35,8 @@ def parse_args():
     parser.add_argument('-e', '--epochs',type=int, default=1)
     parser.add_argument('-b', '--batch_size', type=int, default=512)
     parser.add_argument('--svd', action=argparse.BooleanOptionalAction)
+    parser.add_argument('-n_e', '--n_epochs', type=str2list_int, default="[5, 10, 15, 20]")
+    parser.add_argument('-lr', '--learning_rate', type=str2list, default="[0.001, 0.002, 0.005, 0.01]")
     parser.set_defaults(svd=True)
     parser.add_argument('--mlp', action=argparse.BooleanOptionalAction)
     parser.set_defaults(mlp=True)
@@ -59,7 +69,9 @@ if args.knn:
              )
     
 if args.svd:
-    SVD.train(ratings_path='./datasets/ratings.dat'
+    SVD.train(ratings_path='./datasets/ratings.dat',
+              e=args.n_epochs,
+              lr=args.learning_rate
              )
 
 if args.mlp:

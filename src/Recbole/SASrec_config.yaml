@@ -6,9 +6,8 @@ epochs : 100
 stopping_step: 10
 batch_size: 2048
 
-# data_path: ./datasets/
-data_path: /content/
-dataset: movies_modified2
+data_path: ./datasets/
+dataset: movies_modified
 
 # dataset configuration
 load_col:

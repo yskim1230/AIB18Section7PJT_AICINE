@@ -52,7 +52,7 @@ def train():
         'valid_metric': 'Recall@10',
         # 'embedding_size': 64,
         # 'step': 1,
-        'dataset': 'movies_modified2',
+        'dataset': 'movies_modified',
     }
 
     config = Config(config_dict=config_dict)

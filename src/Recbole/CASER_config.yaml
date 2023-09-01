@@ -2,12 +2,12 @@
 # model configuration
 model: Caser
 
-epochs : 30
-stopping_step: 5,
-batch_size: 2048,
+epochs : 50
+stopping_step: 5
+batch_size: 2048
 
 data_path: ./datasets/
-dataset: movies_modified2
+dataset: movies_modified
 
 # dataset configuration
 load_col:

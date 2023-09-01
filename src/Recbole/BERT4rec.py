@@ -59,7 +59,7 @@ def train():
         # 'layer_norm_eps': 1e-12,
         # 'initializer_range': 0.02,
         # 'mask_ratio': 0.2,
-        'dataset': 'movies_modified2',
+        'dataset': 'movies_modified',
     }
 
     config = Config(config_dict=config_dict)

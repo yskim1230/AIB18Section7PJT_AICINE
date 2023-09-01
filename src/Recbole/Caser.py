@@ -53,7 +53,7 @@ def train():
         # 'n_h': 8,
         # 'reg_weight': 1e-4,
         # 'dropout_prob': 0.4,
-        'dataset': 'movies_modified2'
+        'dataset': 'movies_modified'
     }
 
     config = Config(config_dict=config_dict)

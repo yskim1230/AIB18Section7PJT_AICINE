@@ -1,0 +1,18 @@
+# config_dict 에 들어가는 기본 값들을 여기에 넣어주면 됨. 
+# model configuration
+model: SRGNN
+
+epochs : 30
+stopping_step: 5
+batch_size: 2048
+
+data_path: ./datasets/
+dataset: movies_modified
+
+# dataset configuration
+load_col:
+  inter: [user_id, item_id,rating, timestamp]
+
+valid_metric: Recall@10
+NEG_PREFIX: neg_
+loss_type: BPR

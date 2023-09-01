@@ -29,9 +29,9 @@ def train():
         'checkpoint_dir': './checkpoints',
         'MODEL_TYPE': ModelType.SEQUENTIAL,
         'model': 'SASRec',  # Specify the model as SASRec
-        'learning_rate': 0.001,
-        'epochs': 50,
-        'eval_step': 1, 
+        'learning_rate': 0.000641466189165807,
+        'epochs': 100,
+        'eval_step': 10, 
         'stopping_step': 5,
         'batch_size': 2048,
         'state': 'INFO',
@@ -49,15 +49,15 @@ def train():
         'topk': 10,
         'loss_type': 'BPR',
         'valid_metric': 'Recall@10',
-        # 'hidden_size': 64,
-        # 'inner_size': 256,
-        # 'n_layers': 2,
-        # 'n_heads': 2,
-        # 'hidden_dropout_prob': 0.5,
-        # 'attn_dropout_prob': 0.5,
-        # 'hidden_act': 'gelu', #['gelu', 'relu', 'swish', 'tanh', 'sigmoid']
-        # 'layer_norm_eps': 1e-12,
-        # 'initializer_range': 0.02,
+        'hidden_size': 128,
+        'inner_size': 256,
+        'n_layers': 2,
+        'n_heads': 2,
+        'hidden_dropout_prob': 0.5,
+        'attn_dropout_prob': 0.5,
+        'hidden_act': 'relu', #['gelu', 'relu', 'swish', 'tanh', 'sigmoid']
+        'layer_norm_eps': 1e-12,
+        'initializer_range': 0.02,
         'dataset': 'movies_modified2',
     }
 

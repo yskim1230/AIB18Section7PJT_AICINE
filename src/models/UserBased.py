@@ -8,21 +8,27 @@ import os
 DIR_PATH = "./datasets/"
 
 class UserBasedRecommender:
-    def __init__(self, path=None):
+    def __init__(self, path=None, model_filename=None):
         """
         Initialize the UserBasedRecommender.
 
         Args:
             path (str): Path to a pre-trained model file (default is None).
+            model_filename (str): Path to the file where the trained model will be saved (default is None).
         """
         self.model = None
         self.data_path = os.path.join(DIR_PATH, 'ratings.dat')  # Specify the ratings data path
+        self.model_filename = model_filename
 
         if path is not None:
             self.load_model(path)
         else:
             self.load_data()
             self.select_model()
+    
+    def save_model(self, model_filename):
+        # Save the trained model
+        dump(model_filename, algo=self.model)
 
     def load_data(self):
         # Load ratings data
@@ -52,26 +58,11 @@ class UserBasedRecommender:
         self.train_model()
         self.evaluate_model()
 
-    def save_model(self, model_filename):
-        # Save the trained model
-        self.model.save(model_filename)
-
-def train_and_save_model(ratings_path, model_filename):
-    # Load ratings data and train a new model
-    reader = Reader(rating_scale=(1, 5))
-    ratings = pd.read_csv(ratings_path, sep='::', header=None, engine='python', names=['userId', 'movieId', 'rating', 'timestamp'])
-    data = Dataset.load_from_df(ratings[['userId', 'movieId', 'rating']], reader)
-    trainset, _ = train_test_split(data, test_size=0.2, random_state=42)
-    model = KNNBasic(sim_options={'name': 'cosine', 'user_based': True, 'min_support': 5})
-    model.fit(trainset)
-
-    # Save the trained model
-    dump(model_filename, algo=model)
+        # Save the trained model if a model filename is provided
+        if self.model_filename:
+            dump(self.model_filename, algo=self.model)
 
 # Example usage:
-# To run the entire pipeline:
-pipeline = UserBasedRecommender()
+# To run the entire pipeline and save the trained model:
+pipeline = UserBasedRecommender(model_filename='./models/UserBased.pkl')
 pipeline.run_pipeline()
-
-# To train and save a new model:
-train_and_save_model('./datasets/ratings.dat', './models/UserBased.h5')

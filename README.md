@@ -311,7 +311,6 @@ def train(ratings_path, e = [5, 10, 15, 20], lr = [0.001, 0.002, 0.005, 0.01]):
 
 #### * Recbole 라이브러리를 활용한 Bert
 >
-```
 import sys
 from pathlib import Path
 import os
@@ -467,7 +466,7 @@ if __name__ == '__main__':
         print(ract.predict(user_id=args.user, n=args.num))
     else:
         print("fail")
-```
+
 
 --------
 ### (2). 모델 성능 결과

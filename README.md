@@ -207,16 +207,15 @@ import os
 import random
 >
 class SVDRecommender():
-    """
-    Singular Value Decomposition (SVD) based collaborative filtering recommendation model.
-    """
+   ###Singular Value Decomposition (SVD) based collaborative filtering recommendation model.
+   
     >
     def __init__(self, path=None):
         self.load_model(path)
 >
     def predict(self, user_id, top=10):
-        """
-        Recommend movies based on the given user ID.
+   
+        ###Recommend movies based on the given user ID.
 >
         Args:
             user_id (int): Target user ID for recommendation.
@@ -224,7 +223,7 @@ class SVDRecommender():
 >
         Returns:
             list: List of top recommended movie IDs.
-        """
+>        
         if self.model is None:
             raise Exception("Model not loaded or trained.")
 >
@@ -236,8 +235,8 @@ class SVDRecommender():
         return [movie[0] for movie in top_movies]
 >
     def save_model(self, model_path):
-        """
-        Save the trained model to the specified path.
+       
+        ### Save the trained model to the specified path.
 >
         Args:
             model_path (str): Path to save the trained model.
@@ -246,11 +245,11 @@ class SVDRecommender():
         dump(model_path, algo=self.model)
 >
     def load_model(self, model_path):
-        """
-        Load the pre-trained model from the specified path.
-        Args:
-            model_path (str): Path to the pre-trained model.
-        """
+        
+        ###Load the pre-trained model from the specified path.
+        ###Args:
+        ###    model_path (str): Path to the pre-trained model.
+        
         if os.path.exists(model_path):
             from surprise.dump import load
             _, self.model = load(model_path)
@@ -258,12 +257,11 @@ class SVDRecommender():
             raise Exception(f"Model file not found: {model_path}")
 >
 def train(ratings_path, e = [5, 10, 15, 20], lr = [0.001, 0.002, 0.005, 0.01]):
-    """
-    Train the SVD model and save it to the specified path.
-    Args:
-        ratings_path (str): Path to the ratings.dat file.
-        model_path (str): Path to save the trained model.
-    """
+    
+    ###Train the SVD model and save it to the specified path.
+    ###Args:
+        ###ratings_path (str): Path to the ratings.dat file.
+        ###model_path (str): Path to save the trained model.
     ratings = pd.read_csv(ratings_path, sep='::', header=None, engine='python', names=['userId', 'movieId', 'rating', 'timestamp'])
     reader = Reader(rating_scale=(1, 5))
     dataset = Dataset.load_from_df(ratings[['userId', 'movieId', 'rating']], reader)
@@ -307,12 +305,13 @@ def train(ratings_path, e = [5, 10, 15, 20], lr = [0.001, 0.002, 0.005, 0.01]):
         from surprise.dump import dump
         dump('./models/svd.h5', algo=best_svd)
     print('Save Complete.')
-
+```
 
 --------
 
 #### * Recbole 라이브러리를 활용한 Bert
 >
+```
 import sys
 from pathlib import Path
 import os
@@ -468,7 +467,7 @@ if __name__ == '__main__':
         print(ract.predict(user_id=args.user, n=args.num))
     else:
         print("fail")
-
+```
 
 --------
 ### (2). 모델 성능 결과

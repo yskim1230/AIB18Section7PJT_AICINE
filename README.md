@@ -85,7 +85,6 @@ AIB18Section7PJT_AICINE-main
 ```
 
 
-
 # AIB18_Section7_PJT
 # AIB18기 DA 12팀 - AI-CINE팀
 
@@ -310,6 +309,7 @@ def train(ratings_path, e = [5, 10, 15, 20], lr = [0.001, 0.002, 0.005, 0.01]):
     print('Save Complete.')
 
 
+--------
 
 #### * Recbole 라이브러리를 활용한 Bert
 >
@@ -470,6 +470,8 @@ if __name__ == '__main__':
     else:
         print("fail")
 ```
+
+--------
 ### (2). 모델 성능 결과
 >![](https://velog.velcdn.com/images/malangcow/post/51eb282e-f1b3-4c3f-b7dc-abbfde7dbf68/image.png)
 모델 시연 결과를 확인해본 결과 
@@ -540,3 +542,4 @@ if __name__ == '__main__':
 
 ### 추천 모델 구성을 위한 파이썬 모듈 구조화 방식 경험 습득
 ![](https://velog.velcdn.com/images/malangcow/post/1299e1d4-c567-409b-b1d7-34bc6bcbd3c5/image.png)
+
